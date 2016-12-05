@@ -1,0 +1,12 @@
+>/usr/lib/ghdl/lib/gcc/x86_64-linux-gnu/4.8/vhdl/lib//v93/synopsys/
+../../../src/ieee/std_logic_1164.v93
+>/usr/lib/ghdl/lib/gcc/x86_64-linux-gnu/4.8/vhdl/lib//v93/synopsys/
+../../../src/ieee/std_logic_1164_body.v93
+>
+TB_MAIN_PROCESSOR.vhd
+>/usr/lib/ghdl/lib/gcc/x86_64-linux-gnu/4.8/vhdl/lib//v93/synopsys/
+../../../src/synopsys/std_logic_arith.vhdl
+>/usr/lib/ghdl/lib/gcc/x86_64-linux-gnu/4.8/vhdl/lib//v93/synopsys/
+../../../src/synopsys/std_logic_signed.vhdl
+>
+ULA.vhd

@@ -1,34 +1,37 @@
 v 3
-file . "ULA.vhd" "20161205153239.000" "20161205144502.795":
-  entity ula at 5( 190) + 0 on 75;
-  architecture arc_ula of ula at 20( 665) + 0 on 76;
-file . "REG.vhd" "20161205162725.000" "20161205144502.496":
-  entity reg at 21( 999) + 0 on 71;
-  architecture arc_reg of reg at 39( 1545) + 0 on 72;
-file . "PC.vhd" "20161205153239.000" "20161205144502.336":
-  entity pc at 5( 190) + 0 on 67;
-  architecture arc_pc of pc at 18( 453) + 0 on 68;
-file . "MUX2.vhd" "20161205153239.000" "20161205144501.893":
-  entity mux2 at 21( 999) + 0 on 63;
-  architecture arc_mux2 of mux2 at 33( 1257) + 0 on 64;
-file . "MAIN_PROCESSOR.vhd" "20161205153239.000" "20161205144501.806":
-  entity main_processor at 21( 999) + 0 on 59;
-  architecture arc_main_processor of main_processor at 32( 1195) + 0 on 60;
-file . "DECODER.vhd" "20161205161521.000" "20161205144501.710":
-  entity decoder at 21( 999) + 0 on 55;
-  architecture arc_decoder of decoder at 45( 1788) + 0 on 56;
-file . "DECODER_MEM.vhd" "20161205153239.000" "20161205144501.774":
-  entity decoder_mem at 1( 0) + 0 on 57;
-  architecture behavioral of decoder_mem at 17( 407) + 0 on 58;
-file . "MEM.vhd" "20161205153239.000" "20161205144501.861":
-  entity mem at 21( 999) + 0 on 61;
-  architecture arc_mem of mem at 38( 1399) + 0 on 62;
-file . "MUX4.vhd" "20161205153239.000" "20161205144501.917":
-  entity mux4 at 21( 999) + 0 on 65;
-  architecture arc_mux4 of mux4 at 35( 1374) + 0 on 66;
-file . "PROG_MEMORY.vhd" "20161205161947.000" "20161205144502.466":
-  entity prog_memory at 5( 198) + 0 on 69;
-  architecture arc_inst of prog_memory at 16( 458) + 0 on 70;
-file . "TB_MAIN_PROCESSOR.vhd" "20161205164058.000" "20161205144502.546":
-  entity tb_main_processor at 2( 1) + 0 on 73;
-  architecture testbench of tb_main_processor at 15( 304) + 0 on 74;
+file . "pkg_processor.vhd" "20161205193710.000" "20161205182413.724":
+  package pkg_processor at 1( 0) + 0 on 820;
+file . "ULA.vhd" "20161205172308.000" "20161205182413.564":
+  entity ula at 5( 190) + 0 on 818;
+  architecture arc_ula of ula at 20( 665) + 0 on 819;
+file . "REG.vhd" "20161205194538.000" "20161205182413.370":
+  entity reg at 21( 999) + 0 on 813;
+  architecture arc_reg of reg at 39( 1545) + 0 on 814;
+file . "PC.vhd" "20161205172307.000" "20161205182413.202":
+  entity pc at 5( 190) + 0 on 809;
+  architecture arc_pc of pc at 18( 453) + 0 on 810;
+file . "MUX2.vhd" "20161205172307.000" "20161205182413.042":
+  entity mux2 at 21( 999) + 0 on 805;
+  architecture arc_mux2 of mux2 at 33( 1257) + 0 on 806;
+file . "MAIN_PROCESSOR.vhd" "20161205195604.000" "20161205182412.828":
+  entity main_processor at 21( 999) + 0 on 801;
+  architecture arc_main_processor of main_processor at 32( 1195) + 0 on 802;
+file . "DECODER.vhd" "20161205172307.000" "20161205182412.606":
+  entity decoder at 21( 999) + 0 on 797;
+  architecture arc_decoder of decoder at 45( 1788) + 0 on 798;
+file . "DECODER_MEM.vhd" "20161205172307.000" "20161205182412.740":
+  entity decoder_mem at 1( 0) + 0 on 799;
+  architecture behavioral of decoder_mem at 17( 407) + 0 on 800;
+file . "MEM.vhd" "20161205172307.000" "20161205182412.958":
+  entity mem at 21( 999) + 0 on 803;
+  architecture arc_mem of mem at 38( 1399) + 0 on 804;
+file . "MUX4.vhd" "20161205172307.000" "20161205182413.117":
+  entity mux4 at 21( 999) + 0 on 807;
+  architecture arc_mux4 of mux4 at 35( 1374) + 0 on 808;
+file . "PROG_MEMORY.vhd" "20161205172308.000" "20161205182413.293":
+  entity prog_memory at 5( 198) + 0 on 811;
+  architecture arc_inst of prog_memory at 16( 458) + 0 on 812;
+file . "TB_MAIN_PROCESSOR.vhd" "20161205195404.000" "20161205182413.473":
+  entity tb_main_processor at 22( 877) + 0 on 815;
+  architecture testbench of tb_main_processor at 35( 1182) + 0 on 816;
+  configuration tb_main_processor_testbench_cfg at 95( 2610) + 0 on 817;

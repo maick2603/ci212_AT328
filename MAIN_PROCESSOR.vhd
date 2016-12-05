@@ -127,10 +127,6 @@ ARCHITECTURE ARC_MAIN_PROCESSOR OF MAIN_PROCESSOR IS
 			OUT_A :					OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
 		);
 	END COMPONENT;
-	
-	
-	
-	
 
 	--PC
   signal Addr : std_logic_vector (8 downto 0);
@@ -175,6 +171,14 @@ ARCHITECTURE ARC_MAIN_PROCESSOR OF MAIN_PROCESSOR IS
                                         
   signal input_data_reg : std_logic_vector(7 downto 0);  -- saida do multiplexador do REG
                                                          
+  signal PIPELINE_IF_ID_Instr : std_logic_vector(15 downto 0); --PL IF/ID <= Instr
+
+  --signal PIPELINE_ID_EX_PC : std_logic_vector(11 downto 0); --PL ID/EX <= PC+4
+  --signal PIPELINE_ID_EX_Rr : std_logic_vector(7 downto 0); --PL ID/EX <= Rr
+  --signal PIPELINE_ID_EX_Rd : std_logic_vector(7 downto 0); --PL ID/EX <= Rd
+  
+  --signal PIPELINE_EX_MEM_Rd : std_logic_vector(7 downto 0);
+
 
 BEGIN
 	--S_GERAL_OPCode 	<= S_REG_IF_ID_OUT_A(31 DOWNTO 26);
@@ -186,16 +190,22 @@ BEGIN
 	--S_GERAL_JUMP		<= S_REG_IF_ID_OUT_A(31 DOWNTO 0);
 	--S_GERAL_PC_4		<= S_REG_IF_ID_OUT_B(31 DOWNTO 0);
 
-
-	
 	 C_PC : PC
     port map (
-      reset => reset, offset_pc => offset_pc,
-      clk => CLK, 	  Addr => Addr);
-      
+      reset => reset, 
+      offset_pc => offset_pc,
+      clk => CLK,
+      Addr => Addr);
 
     C_PROG_MEMORY : PROG_MEMORY
-    port map (Addr  => Addr, Instr => Instr);
+    port map (
+      --Addr  => PIPELINE_IF_ID_PC, 
+      --Instr => PIPELINE_IF_ID_Instr);
+      Addr  => Addr, 
+      Instr => Instr);
+
+    --PIPELINE_IF_ID_PC <= Addr when rising_edge(clk);
+    --PIPELINE_IF_ID_Instr <= Instr;
 
     C_DECODER : DECODER
     port map (
@@ -252,7 +262,7 @@ BEGIN
       data_out   => memory_data_out);
 
   -- variable from instruction
-  PM_Data <= Instr(11 downto 8)&Instr(3 downto 0);
+  PM_Data <= Instr(11 downto 8) & Instr(3 downto 0);
 
   C_MUX2 : MUX2
   	port map (
@@ -281,7 +291,5 @@ BEGIN
       end if;
     end if;
   end process sreg_process;
-
-	
 END ARC_MAIN_PROCESSOR;
 

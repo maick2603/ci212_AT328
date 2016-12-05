@@ -2,7 +2,7 @@
 -- Title      : Testbench for design "ALU"
 -- Project    : 
 -------------------------------------------------------------------------------
--- File       : tb_main_processor.vhd
+-- File       : ALU_tb.vhd
 -- Author     : Burkart Voss  <bvoss@Troubadix>
 -- Company    : 
 -- Created    : 2015-06-23
@@ -16,38 +16,38 @@
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version  Author  Description
--- 2015-06-23  1.0      bvoss Created
+-- 2015-06-23  1.0      bvoss	Created
 -------------------------------------------------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.all;
---library work;
---use work.pkg_processor.all;
+library work;
+use work.pkg_processor.all;
 
 -------------------------------------------------------------------------------
 
-entity tb_main_processor is
+entity ALU_tb is
 
-end tb_main_processor;
+end ALU_tb;
 
 -------------------------------------------------------------------------------
 
-architecture testbench of tb_main_processor is
+architecture testbench of ALU_tb is
 
-  component ULA
+  component ALU
     port (
       OPCODE : in  STD_LOGIC_VECTOR (3 downto 0);
-      IN_A    : in  STD_LOGIC_VECTOR (7 downto 0);
-      IN_B    : in  STD_LOGIC_VECTOR (7 downto 0);
-      RESULT    : out STD_LOGIC_VECTOR (7 downto 0);
+      OPA    : in  STD_LOGIC_VECTOR (7 downto 0);
+      OPB    : in  STD_LOGIC_VECTOR (7 downto 0);
+      RES    : out STD_LOGIC_VECTOR (7 downto 0);
       Status : out STD_LOGIC_VECTOR (7 downto 0));
   end component;
 
   -- component ports
   signal OPCODE : STD_LOGIC_VECTOR (3 downto 0);
-  signal IN_A    : STD_LOGIC_VECTOR (7 downto 0);
-  signal IN_B    : STD_LOGIC_VECTOR (7 downto 0);
-  signal RESULT    : STD_LOGIC_VECTOR (7 downto 0);
+  signal OPA    : STD_LOGIC_VECTOR (7 downto 0);
+  signal OPB    : STD_LOGIC_VECTOR (7 downto 0);
+  signal RES    : STD_LOGIC_VECTOR (7 downto 0);
   signal Status : STD_LOGIC_VECTOR (7 downto 0);
 
   -- clock
@@ -56,12 +56,12 @@ architecture testbench of tb_main_processor is
 begin  -- testbench
 
   -- component instantiation
-  DUT: ULA
+  DUT: ALU
     port map (
       OPCODE => OPCODE,
-      IN_A    => IN_A,
-      IN_B    => IN_B,
-      RESULT    => RESULT,
+      OPA    => OPA,
+      OPB    => OPB,
+      RES    => RES,
       Status => Status);
 
 
@@ -69,20 +69,20 @@ begin  -- testbench
   WaveGen_Proc: process
   begin
     -- insert signal assignments here
-    OPCODE <= "0000";   -- Add
-    IN_A <= "00000100";
-    IN_B <= "00000011";
-    wait for 100 ns;
-    OPCODE <= "0001";   -- Sub
-    wait for 100 ns;
-    OPCODE <= "0010";   -- OR
-    wait for 100 ns;
-    OPCODE <= "0100";
-    wait for 100 ns;
-    OPCODE <= "0101";
-    wait for 100 ns;
-    OPCODE <= "0111";
-    wait for 100 ns;
+    OPCODE <= op_add;   -- Add
+    OPA <= "00000100";
+    OPB <= "00000011";
+    wait for 100ns;
+    OPCODE <= op_sub;   -- Sub
+    wait for 100ns;
+    OPCODE <= op_or;   -- OR
+    wait for 100ns;
+    OPCODE <= op_and;
+    wait for 100ns;
+    OPCODE <= op_dec;
+    wait for 100ns;
+    OPCODE <= op_inc;
+    wait for 100ns;
     
   end process WaveGen_Proc;
 
@@ -92,9 +92,9 @@ end testbench;
 
 -------------------------------------------------------------------------------
 
-configuration tb_main_processor_testbench_cfg of tb_main_processor is
+configuration ALU_tb_testbench_cfg of ALU_tb is
   for testbench
   end for;
-end tb_main_processor_testbench_cfg;
+end ALU_tb_testbench_cfg;
 
 -------------------------------------------------------------------------------
