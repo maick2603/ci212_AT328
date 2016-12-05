@@ -1,84 +1,90 @@
---------------------------------------------------------------------------------
--- Company: 
--- Engineer:
---
--- Create Date:   17:35:44 08/06/2015
--- Design Name:   
--- Module Name:   E:/Programas_FPGA/SYNGLE_CYCLE_V3/TB_MAIN_PROCESSOR.vhd
--- Project Name:  SYNGLE_CYCLE_V3
--- Target Device:  
--- Tool versions:  
--- Description:   
--- 
--- VHDL Test Bench Created by ISE for module: MAIN_PROCESSOR
--- 
--- Dependencies:
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
---
--- Notes: 
--- This testbench has been automatically generated using types std_logic and
--- std_logic_vector for the ports of the unit under test.  Xilinx recommends
--- that these types always be used for the top-level I/O of a design in order
--- to guarantee that the testbench will bind correctly to the post-implementation 
--- simulation model.
---------------------------------------------------------------------------------
-LIBRARY ieee;
-USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
-ENTITY TB_MAIN_PROCESSOR IS
-END TB_MAIN_PROCESSOR;
- 
-ARCHITECTURE behavior OF TB_MAIN_PROCESSOR IS 
- 
-    -- Component Declaration for the Unit Under Test (UUT)
- 
-    COMPONENT MAIN_PROCESSOR
-    PORT(
-         CLK : IN  std_logic;
-         RESET : IN  std_logic
-        );
-    END COMPONENT;
+
+library ieee;
+use ieee.std_logic_1164.all;
+library work;
+--use work.pkg_processor.all;
+
+-------------------------------------------------------------------------------
+
+entity TB_MAIN_PROCESSOR is
+
+end TB_MAIN_PROCESSOR;
+
+-------------------------------------------------------------------------------
+
+architecture testbench of TB_MAIN_PROCESSOR is
+
+  component ULA
+    port (
+      OPCODE : in  STD_LOGIC_VECTOR (3 downto 0);
+      IN_A    : in  STD_LOGIC_VECTOR (7 downto 0);
+      IN_B   : in  STD_LOGIC_VECTOR (7 downto 0);
+      RESULT    : out STD_LOGIC_VECTOR (7 downto 0);
+      Status : out STD_LOGIC_VECTOR (7 downto 0));
+  end component;
+
+  -- component ports
+  signal OPCODE : STD_LOGIC_VECTOR (3 downto 0);
+  signal OPA    : STD_LOGIC_VECTOR (7 downto 0);
+  signal OPB    : STD_LOGIC_VECTOR (7 downto 0);
+  signal RES    : STD_LOGIC_VECTOR (7 downto 0);
+  signal Status : STD_LOGIC_VECTOR (7 downto 0);
+  constant op_NOP : std_logic_vector(3 downto 0) := "0000";  -- NoOperation (als Addition implementiert, die Ergebnisse
+                   -- werden aber nicht gespeichert...
+  constant op_sub : std_logic_vector(3 downto 0) := "0001";  -- Subtraction
+  constant op_or : std_logic_vector(3 downto 0) := "0010";  -- bitwise OR
+  constant op_ldi : std_logic_vector(3 downto 0) := "0011";  -- Load immediate
+
+  constant op_and : std_logic_vector(3 downto 0) := "0100"; -- bitwise AND
+  constant op_dec : std_logic_vector(3 downto 0) := "0101"; -- decrement
+  constant op_inc : std_logic_vector(3 downto 0) := "0111"; -- increment
+
+  constant op_lsr : std_logic_vector(3 downto 0) := "1000"; -- logical shift right
+  constant op_xor : std_logic_vector(3 downto 0) := "1001"; -- bitwise xor
+   constant op_add : std_logic_vector(3 downto 0) := "0000";  -- Addition
+
+  -- clock
+  signal Clk : std_logic := '1';
+
+begin  -- testbench
+  
+
+  -- component instantiation
+  DUT: ULA
+    port map (
+      OPCODE => OPCODE,
+      IN_A    => OPA,
+      IN_B    => OPB,
+      RESULT    => RES,
+      Status => Status);
+
+
+  -- waveform generation
+  WaveGen_Proc: process
+   
+  
+  
+  begin
+
+
+    -- insert signal assignments here
+    OPCODE <= op_add;   -- Add
+    OPA <= "00000100";
+    OPB <= "00000011";
+    wait for 100 ns;
+    OPCODE <= op_sub;   -- Sub
+    wait for 100 ns;
+    OPCODE <= op_or;   -- OR
+    wait for 100 ns;
+    OPCODE <= op_and;
+    wait for 100 ns;
+    OPCODE <= op_dec;
+    wait for 100 ns;
+    OPCODE <= op_inc;
+    wait for 100 ns;
     
+  end process WaveGen_Proc;
 
-   --Inputs
-   signal CLK : std_logic := '0';
-   signal RESET : std_logic := '0';
+  
 
-   -- Clock period definitions
-   constant CLK_period : time := 10 ns;
- 
-BEGIN
- 
-	-- Instantiate the Unit Under Test (UUT)
-   uut: MAIN_PROCESSOR PORT MAP (
-          CLK => CLK,
-          RESET => RESET
-        );
-
-   -- Clock process definitions
-   CLK_process :process
-   begin
-		CLK <= '0';
-		wait for CLK_period/2;
-		CLK <= '1';
-		wait for CLK_period/2;
-   end process;
- 
-
-   -- Stimulus process
-   stim_proc: process
-   begin		
-		RESET <= '1';
-      wait for 10 ns;
-		RESET <= '0';
-		WAIT;
-   end process;
-
-END;
+end testbench;

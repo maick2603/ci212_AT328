@@ -42,8 +42,16 @@ ARCHITECTURE ARC_REG OF REG IS
 	SIGNAL	REG_1	: STD_REG;
 	SIGNAL  SREG_REG: STD_LOGIC_VECTOR(7 downto 0);
 	
-BEGIN	
+	
+BEGIN
+	REG_1(0)<="00000000";
+	REG_1(1)<="00000001";
+	REG_1(2)<="00000101";
+	REG_1(3)<="00010000";
+	REG_1(4)<="00001111";
+	REG_1(5)<="00000111";	
 	PROCESS(CLK, RESET)
+		
 		BEGIN
 			if clk'event and clk = '1' then     -- rising clock edge
 	      		if reset = '1' then

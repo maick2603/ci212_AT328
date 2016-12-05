@@ -84,6 +84,11 @@ BEGIN
 		        addr_opb    <= Instr(9) & Instr (3 downto 0);
 		        S_regfile <= '1';
 		        sel_regfile_datain <= "01";
+		    when "111100" =>
+        		if sreg(to_integer(unsigned(Instr(2 downto 0)))) = '1' then
+          			offset_pc <= std_logic_vector(resize(signed(Instr(9 downto 3)), offset_pc'length));
+        		end if;
+
 		    when others =>
 		        case Instr(15 downto 12) is  -- instruções codificadas nos 4 primeiros bits
 		          	when "1110" => -- LDI
