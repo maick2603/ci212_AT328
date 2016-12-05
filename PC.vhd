@@ -4,13 +4,14 @@
 -- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
 
 ENTITY PC IS
 	PORT(
 		CLK :						IN		STD_LOGIC;
 		RESET :						IN		STD_LOGIC;
 		OFFSET_PC :					IN 		STD_LOGIC_VECTOR(11 DOWNTO 0);
-		ADDR :						OUT		STD_LOGIC_VECTOR(8 DOWNTO 0);
+		ADDR :						OUT		STD_LOGIC_VECTOR(8 DOWNTO 0)
 	);
 END PC;
 

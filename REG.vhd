@@ -32,7 +32,7 @@ ENTITY REG IS
         data_opa    : out std_logic_vector (7 downto 0);
         data_opb    : out std_logic_vector (7 downto 0);
         index_z     : out std_logic_vector (15 downto 0);
-        data_in     : in  std_logic_vector (7 downto 0);
+        data_in     : in  std_logic_vector (7 downto 0)
 	);
 END REG;
 
@@ -40,7 +40,7 @@ ARCHITECTURE ARC_REG OF REG IS
 	
 	TYPE 	STD_REG IS ARRAY(0 TO 31) OF STD_LOGIC_VECTOR(7 DOWNTO 0);
 	SIGNAL	REG_1	: STD_REG;
-	SIGNAL  SREG_REG: STD_LOGIC_VECTOR(7 downto 0)
+	SIGNAL  SREG_REG: STD_LOGIC_VECTOR(7 downto 0);
 	
 BEGIN	
 	PROCESS(CLK, RESET)

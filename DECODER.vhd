@@ -20,8 +20,9 @@
 -- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
-USE IEEE.STD_LOGIC_ARITH.ALL;
-USE IEEE.STD_LOGIC_SIGNED.ALL;
+--USE IEEE.STD_LOGIC_ARITH.ALL;
+--USE IEEE.STD_LOGIC_SIGNED.ALL;
+use ieee.numeric_std.all;
 
 ENTITY DECODER IS
 	PORT(
@@ -81,8 +82,8 @@ BEGIN
 		    when "001011" => -- MOV
 		        addr_opa    <= Instr(8 downto 4);
 		        addr_opb    <= Instr(9) & Instr (3 downto 0);
-		        w_e_regfile <= '1';
-		        regfile_datain_selector <= "01";
+		        S_regfile <= '1';
+		        sel_regfile_datain <= "01";
 		    when others =>
 		        case Instr(15 downto 12) is  -- instruções codificadas nos 4 primeiros bits
 		          	when "1110" => -- LDI
@@ -96,7 +97,7 @@ BEGIN
 				                case Instr(3 downto 0) is
 					                when "1010" =>        -- DEC
 					                    addr_opa    <= Instr(8 downto 4);
-					                    OPCODE      <= op_dec;
+					                    OPCODE      <= "0101";
 					                    S_regfile <= '1';
 					                    S_SREG    <= "00011110";
 					                when others =>

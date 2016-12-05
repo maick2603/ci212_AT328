@@ -33,10 +33,14 @@ END MUX2;
 ARCHITECTURE ARC_MUX2 OF MUX2 IS
 
 BEGIN
-	case CTRL is
-		when "0" =>
-			OUT_A <= IN_A
-		when "1" =>
-			OUT_A <= IN_B
+	process
+ 		constant CASE_B : STD_LOGIC := '1';
+ 		constant CASE_A : STD_LOGIC := '0';
+	begin
+		if CTRL = CASE_A then
+			OUT_A <= IN_A;
+		ELSE
+			OUT_A <= IN_B;
+		end if;
+	end process;
 END ARC_MUX2;
-

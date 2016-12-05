@@ -1,0 +1,34 @@
+v 4
+file . "ULA.vhd" "1a7c28615b43203144e7c9c3e39effb9981e4074" "20161205025452.472":
+  entity ula at 5( 190) + 0 on 93;
+  architecture arc_ula of ula at 20( 665) + 0 on 94;
+file . "TB_MAIN_PROCESSOR.vhd" "9a6cb21ca6a7cf5da8336190f3f5ca0ec3450723" "20161205025452.468":
+  entity tb_main_processor at 28( 951) + 0 on 91;
+  architecture behavior of tb_main_processor at 38( 1200) + 0 on 92;
+file . "MUX4.vhd" "7b2dcf8d4494ddecb5500a76c8e504d79519adb4" "20161205025452.465":
+  entity mux4 at 21( 999) + 0 on 83;
+  architecture arc_mux4 of mux4 at 35( 1374) + 0 on 84;
+file . "MUX2.vhd" "66f5a2fdf183d0eab4650b074a1b7eb9de9f7967" "20161205025452.464":
+  entity mux2 at 21( 1019) + 0 on 81;
+  architecture arc_mux2 of mux2 at 33( 1289) + 0 on 82;
+file . "MEM.vhd" "374d6deeb628b69ba13d7769b4aea6c07e6fc8e8" "20161205025452.463":
+  entity mem at 21( 999) + 0 on 79;
+  architecture arc_mem of mem at 38( 1399) + 0 on 80;
+file . "MAIN_CTTRL.vhd" "167318f156a796c2a6d937188d8e54ea647c7d86" "20161205025452.462":
+  entity main_processor at 21( 999) + 0 on 77;
+  architecture arc_main_processor of main_processor at 32( 1195) + 0 on 78;
+file . "DECODER_MEM.vhd" "8ef8f5f68f95c5513e12ab8eadf466a37a598cf6" "20161205025452.461":
+  entity decoder_mem at 1( 0) + 0 on 75;
+  architecture behavioral of decoder_mem at 17( 423) + 0 on 76;
+file . "REG.vhd" "55baf078dcdcf3a1233ae706cd699ef37efd4e51" "20161205025452.468":
+  entity reg at 21( 999) + 0 on 89;
+  architecture arc_reg of reg at 39( 1545) + 0 on 90;
+file . "PC.vhd" "0c30d27f68a460d26b418f4680a7de256b095c81" "20161205025452.466":
+  entity pc at 5( 190) + 0 on 85;
+  architecture arc_pc of pc at 18( 453) + 0 on 86;
+file . "PROG_MEMORY.vhd" "6448cabec0148c6e2ac335dbdcce9c11adc8e2e2" "20161205025452.467":
+  entity prog_memory at 5( 198) + 0 on 87;
+  architecture arc_inst of prog_memory at 16( 458) + 0 on 88;
+file . "DECODER.vhd" "386b920d4bf045c5bdf734b1471fef1c4cfafa9d" "20161205025452.460":
+  entity decoder at 21( 1019) + 0 on 73;
+  architecture arc_decoder of decoder at 45( 1832) + 0 on 74;

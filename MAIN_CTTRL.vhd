@@ -43,7 +43,7 @@ ARCHITECTURE ARC_MAIN_PROCESSOR OF MAIN_PROCESSOR IS
 	COMPONENT PROG_MEMORY
 		PORT(
 			Addr  : in  std_logic_vector (8 downto 0);
-      		Instr : out std_logic_vector (15 downto 0))
+      		Instr : out std_logic_vector (15 downto 0)
 		);
 	END COMPONENT;
 
@@ -58,7 +58,7 @@ ARCHITECTURE ARC_MAIN_PROCESSOR OF MAIN_PROCESSOR IS
 		    S_regfile          : out std_logic;  
 		    S_SREG             : out std_logic_vector(7 downto 0);  
 		    offset_pc          : out std_logic_vector(11 downto 0); 
-		    sel_regfile_datain : out std_logic_vector(1 downto 0)  
+		    sel_regfile_datain : out std_logic_vector(1 downto 0);  
 		    sel_alu_immediate  : out std_logic   
 		);
 	END COMPONENT;
@@ -177,14 +177,14 @@ ARCHITECTURE ARC_MAIN_PROCESSOR OF MAIN_PROCESSOR IS
                                                          
 
 BEGIN
-	S_GERAL_OPCode 	<= S_REG_IF_ID_OUT_A(31 DOWNTO 26);
-	S_GERAL_RS 			<= S_REG_IF_ID_OUT_A(25 DOWNTO 21);
-	S_GERAL_RT			<= S_REG_IF_ID_OUT_A(20 DOWNTO 16);
-	S_GERAL_RD 			<= S_REG_IF_ID_OUT_A(15 DOWNTO 11);
-	S_GERAL_I_TYPE 	<= S_REG_IF_ID_OUT_A(15 DOWNTO 0);
-	S_GERAL_FUNCT		<= S_REG_IF_ID_OUT_A(5 DOWNTO 0);
-	S_GERAL_JUMP		<= S_REG_IF_ID_OUT_A(31 DOWNTO 0);
-	S_GERAL_PC_4		<= S_REG_IF_ID_OUT_B(31 DOWNTO 0);
+	--S_GERAL_OPCode 	<= S_REG_IF_ID_OUT_A(31 DOWNTO 26);
+	--S_GERAL_RS 			<= S_REG_IF_ID_OUT_A(25 DOWNTO 21);
+	--S_GERAL_RT			<= S_REG_IF_ID_OUT_A(20 DOWNTO 16);
+	--S_GERAL_RD 			<= S_REG_IF_ID_OUT_A(15 DOWNTO 11);
+	--S_GERAL_I_TYPE 	<= S_REG_IF_ID_OUT_A(15 DOWNTO 0);
+	--S_GERAL_FUNCT		<= S_REG_IF_ID_OUT_A(5 DOWNTO 0);
+	--S_GERAL_JUMP		<= S_REG_IF_ID_OUT_A(31 DOWNTO 0);
+	--S_GERAL_PC_4		<= S_REG_IF_ID_OUT_B(31 DOWNTO 0);
 
 
 	
@@ -224,11 +224,11 @@ BEGIN
       data_in     => input_data_reg);
 
   -- instance "ALU_1"
-  C_ULA : ALU
+  C_ULA : ULA
     port map (
       OPCODE => OPCODE,
-      OPA    => data_opa,
-      OPB    => input_alu_opb,
+      IN_A    => data_opa,
+      IN_B    => input_alu_opb,
       RESULT    => data_res,
       STATUS => status_alu);
 

@@ -35,15 +35,26 @@ END MUX4;
 ARCHITECTURE ARC_MUX4 OF MUX4 IS
 
 BEGIN
-	case CTRL is
-		when "00" =>
-			OUT_A <= IN_A
-		when "01" =>
-			OUT_A <= IN_B
-		when "10" =>
-			OUT_A <= IN_C
-		when "11" =>
-			OUT_A <= IN_D
-
+	process
+		constant CASE_A : STD_LOGIC_VECTOR(1 downto 0) := "00";
+ 		constant CASE_B : STD_LOGIC_VECTOR(1 downto 0) := "01";
+ 		constant CASE_C : STD_LOGIC_VECTOR(1 downto 0) := "10";
+ 		constant CASE_D : STD_LOGIC_VECTOR(1 downto 0) := "11";
+	begin
+	if CTRL = CASE_A then
+		OUT_A <= IN_A;
+	end if;
+	if CTRL = CASE_B then
+		OUT_A <= IN_B;
+	end if;
+	if CTRL = CASE_C then
+		OUT_A <= IN_c;
+	end if;
+	if CTRL = CASE_D then
+		OUT_A <= IN_D;
+	end if;
+	end process;
 END ARC_MUX4;
+
+
 

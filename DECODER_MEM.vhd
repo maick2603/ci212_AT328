@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-
+ 
 
 entity DECODER_MEM is
     port (
@@ -14,24 +14,26 @@ entity DECODER_MEM is
     );
 end entity DECODER_MEM;
 
-architecture Behavioral of decoder_memory is
+architecture Behavioral of DECODER_MEM is
+
 begin
   process (index_z, S_decoder_memory)  
+    variable id_port : std_logic_vector(3 downto 0);
+    constant addr_first_memory : std_logic_vector(15 downto 0) := x"0060";
+    constant addr_last_memory : std_logic_vector(15 downto 0) := x"045F";
   begin
     S_memory <= "0000";
     addr_memory <= "0000000000";
     id_port := "0000";
-    if unsigned(index_z) >= unsigned(x"0060")
-      and unsigned(index_z) <= unsigned(x"045F") then
-            addr_memory <= std_logic_vector(resize(unsigned(index_z) - unsigned(x"0060"),
-                                                    addr_memory'length));
+    if unsigned(index_z) >= unsigned(addr_first_memory) and unsigned(index_z) <= unsigned(addr_last_memory) then
+            addr_memory <= std_logic_vector(resize(unsigned(index_z) - unsigned(addr_first_memory), addr_memory'length));
             id_port := "0001";
       end if;
-    end case;
+    
 
     memory_output_selector <= id_port;
-    if w_e_decoder_memory = '1' then
-      w_e_memory <= "0001";
+    if S_decoder_memory = '1' then
+      S_memory <= "0001";
     end if;
 
   end process;
